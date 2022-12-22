@@ -35,6 +35,15 @@ class Managment:
             down_frame, bd=2, relief=RIDGE, text='Search')
         search_frame.place(x=10, y=0, width=1200, height=50)
 
+        # 1 label
+        label_1 = Label(upper_frame, text="label1", font=(
+            'modern', 11, 'bold'), bg='white')
+        label_1.grid(row=0, column=0, padx=2, sticky=W)
+
+        label_1_entry = ttk.Entry(upper_frame, width=22, font=(
+            'modern', 11, 'bold'))
+        label_1_entry.grid(row=0, column=1, padx=2, sticky=W)
+
 
 if __name__ == '__main__':
     root = Tk()
