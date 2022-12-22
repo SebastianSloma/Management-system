@@ -1,6 +1,9 @@
+# import library
 from tkinter import *
 from tkinter import ttk
 from PIL import Image, ImageTk
+
+# create class Managment
 
 
 class Managment:
@@ -9,9 +12,28 @@ class Managment:
         self.root.geometry('1300x750+0+0')
         self.root.title('EXPENSE SYSTEM MANAGMENT')
 
+        # create window
         label_title = Label(self.root, text='EXPENSE SYSTEM MANAGMENT', font=(
             'modern', 40, 'bold'), bg='black', fg='white')
         label_title.place(x=0, y=0, width=1300, height=70)
+
+        # Main frame
+        Main_frame = Frame(self.root, bd=2, relief=RIDGE, bg='white')
+        Main_frame.place(x=10, y=200, width=1250, height=400)
+
+        # Upper frame
+        upper_frame = LabelFrame(
+            Main_frame, bd=2, relief=RIDGE, text="bla bla bla")
+        upper_frame.place(x=10, y=10, width=1220, height=160)
+        # Down frame
+        down_frame = LabelFrame(
+            Main_frame, bd=2, relief=RIDGE, text="bla bla bla")
+        down_frame.place(x=10, y=200, width=1220, height=160)
+
+        # Search frame
+        search_frame = LabelFrame(
+            down_frame, bd=2, relief=RIDGE, text='Search')
+        search_frame.place(x=10, y=0, width=1200, height=50)
 
 
 if __name__ == '__main__':
