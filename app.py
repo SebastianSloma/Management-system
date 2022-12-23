@@ -32,7 +32,7 @@ class Managment:
 
         # Search frame
         search_frame = LabelFrame(
-            down_frame, bd=2, relief=RIDGE, text='Search')
+            down_frame, bd=2, relief=RIDGE, text='Search', bg='white')
         search_frame.place(x=10, y=0, width=1200, height=50)
 
         # 1 label
@@ -43,6 +43,15 @@ class Managment:
         label_1_entry = ttk.Entry(upper_frame, width=22, font=(
             'modern', 11, 'bold'))
         label_1_entry.grid(row=0, column=1, padx=2, sticky=W)
+
+        # label no2
+        label_2 = Label(upper_frame, font=(
+            "modern", 12, 'bold'), text="label 2:", bg='white')
+        label_2.grid(row=0, column=2, sticky=W, padx=2, pady=7)
+
+        label_2_entry = ttk.Entry(upper_frame, width=22, font=(
+            "modern", 12, 'bold'))
+        label_2_entry.grid(row=0, column=3, padx=2, pady=7)
 
 
 if __name__ == '__main__':
