@@ -50,8 +50,36 @@ class Managment:
         label_2.grid(row=0, column=2, sticky=W, padx=2, pady=7)
 
         label_2_entry = ttk.Entry(upper_frame, width=22, font=(
-            "modern", 12, 'bold'))
+            "modern", 11, 'bold'))
         label_2_entry.grid(row=0, column=3, padx=2, pady=7)
+
+
+        # label no3
+        label_3 = Label(upper_frame, font=(
+            "modern", 12, 'bold'), text="label 3:", bg='white')
+        label_3.grid(row=1, column=0, sticky=W, padx=2, pady=7)
+
+        label_3_entry = ttk.Entry(upper_frame, width=22, font=(
+            "modern", 11, 'bold'))
+        label_3_entry.grid(row=1, column=1, padx=2, pady=7)
+
+        # label no4
+        label_4 = Label(upper_frame, font=(
+            "modern", 12, 'bold'), text="label 4:", bg='white')
+        label_4.grid(row=1, column=2, sticky=W, padx=2, pady=7)
+
+        label_4_entry = ttk.Entry(upper_frame, width=22, font=(
+            "modern", 11, 'bold'))
+        label_4_entry.grid(row=1, column=3, padx=2, pady=7)
+
+        # label no5
+        label_5 = Label(upper_frame, font=(
+            "modern", 12, 'bold'), text="label 5:", bg='white')
+        label_5.grid(row=2, column=0, sticky=W, padx=2, pady=7)
+
+        label_5_entry = ttk.Entry(upper_frame, width=22, font=(
+            "modern", 11, 'bold'))
+        label_5_entry.grid(row=2, column=1, padx=2, pady=7)
 
 
 if __name__ == '__main__':
