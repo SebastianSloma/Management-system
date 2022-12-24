@@ -81,6 +81,80 @@ class Managment:
             "modern", 11, 'bold'))
         label_5_entry.grid(row=2, column=1, padx=2, pady=7)
 
+        # label no6
+        label_6 = Label(upper_frame, font=(
+            "modern", 12, 'bold'), text="label 6:", bg='white')
+        label_6.grid(row=2, column=2, sticky=W, padx=2, pady=7)
+
+        label_6_entry = ttk.Entry(upper_frame, width=22, font=(
+            "modern", 11, 'bold'))
+        label_6_entry.grid(row=2, column=3, padx=2, pady=7)
+
+        # label no7
+        label_7 = Label(upper_frame, font=(
+            "modern", 12, 'bold'), text="label 7:", bg='white')
+        label_7.grid(row=3, column=0, sticky=W, padx=2, pady=7)
+
+        label_7_entry = ttk.Entry(upper_frame, width=22, font=(
+            "modern", 11, 'bold'))
+        label_7_entry.grid(row=3, column=1, padx=2, pady=7)
+
+        # label no8
+        label_8 = Label(upper_frame, font=(
+            "modern", 12, 'bold'), text="label 8:", bg='white')
+        label_8.grid(row=3, column=2, sticky=W, padx=2, pady=7)
+
+        label_8_entry = ttk.Entry(upper_frame, width=22, font=(
+            "modern", 11, 'bold'))
+        label_8_entry.grid(row=3, column=3, padx=2, pady=7)
+
+        # label no9
+        label_9 = Label(upper_frame, font=(
+            "modern", 12, 'bold'), text="label 9:", bg='white')
+        label_9.grid(row=4, column=0, sticky=W, padx=2, pady=7)
+
+        label_9_entry = ttk.Entry(upper_frame, width=22, font=(
+            "modern", 11, 'bold'))
+        label_9_entry.grid(row=4, column=1, padx=2, pady=7)
+
+        # label no10
+        label_10 = Label(upper_frame, font=(
+            "modern", 12, 'bold'), text="label 10:", bg='white')
+        label_10.grid(row=4, column=2, sticky=W, padx=2, pady=7)
+
+        label_10_entry = ttk.Entry(upper_frame, width=22, font=(
+            "modern", 11, 'bold'))
+        label_10_entry.grid(row=4, column=3, padx=2, pady=7)
+
+        # label no11
+        label_11 = Label(upper_frame, font=(
+            "modern", 12, 'bold'), text="label 11:", bg='white')
+        label_11.grid(row=0, column=4, sticky=W, padx=2, pady=7)
+
+        label_11_entry = ttk.Entry(upper_frame, width=22, font=(
+            "modern", 11, 'bold'))
+        label_11_entry.grid(row=0, column=5, padx=2, pady=7)
+
+        # label no12
+        label_12 = Label(upper_frame, font=(
+            "modern", 12, 'bold'), text="label 12:", bg='white')
+        label_12.grid(row=1, column=4, sticky=W, padx=2, pady=7)
+
+        label_12_entry = ttk.Entry(upper_frame, width=22, font=(
+            "modern", 11, 'bold'))
+        label_12_entry.grid(row=1, column=5, padx=2, pady=7)
+
+
+        # label no13
+        label_13 = Label(upper_frame, font=(
+            "modern", 12, 'bold'), text="label 13:", bg='white')
+        label_13.grid(row=2, column=4, sticky=W, padx=2, pady=7)
+
+        # label no14
+        label_14 = Label(upper_frame, font=(
+            "modern", 12, 'bold'), text="label 12:", bg='white')
+        label_14.grid(row=3, column=4, sticky=W, padx=2, pady=7)
+
 
 if __name__ == '__main__':
     root = Tk()
