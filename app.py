@@ -19,16 +19,16 @@ class Managment:
 
         # Main frame
         Main_frame = Frame(self.root, bd=2, relief=RIDGE, bg='white')
-        Main_frame.place(x=10, y=200, width=1250, height=400)
+        Main_frame.place(x=10, y=80, width=1250, height=550)
 
         # Upper frame
         upper_frame = LabelFrame(
             Main_frame, bd=2, relief=RIDGE, text="bla bla bla")
-        upper_frame.place(x=10, y=10, width=1220, height=160)
+        upper_frame.place(x=10, y=10, width=1220, height=260)
         # Down frame
         down_frame = LabelFrame(
             Main_frame, bd=2, relief=RIDGE, text="bla bla bla")
-        down_frame.place(x=10, y=200, width=1220, height=160)
+        down_frame.place(x=10, y=320, width=1220, height=200)
 
         # Search frame
         search_frame = LabelFrame(
@@ -52,7 +52,6 @@ class Managment:
         label_2_entry = ttk.Entry(upper_frame, width=22, font=(
             "modern", 11, 'bold'))
         label_2_entry.grid(row=0, column=3, padx=2, pady=7)
-
 
         # label no3
         label_3 = Label(upper_frame, font=(
@@ -144,7 +143,6 @@ class Managment:
             "modern", 11, 'bold'))
         label_12_entry.grid(row=1, column=5, padx=2, pady=7)
 
-
         # label no13
         label_13 = Label(upper_frame, font=(
             "modern", 12, 'bold'), text="label 13:", bg='white')
@@ -154,6 +152,11 @@ class Managment:
         label_14 = Label(upper_frame, font=(
             "modern", 12, 'bold'), text="label 12:", bg='white')
         label_14.grid(row=3, column=4, sticky=W, padx=2, pady=7)
+
+
+        # radio button
+        radio_button1=Frame(upper_frame,bd=2,relief=RIDGE, bg='white')
+        radio_button1.place(x=730,y=90,width=190,height=30)
 
 
 if __name__ == '__main__':
