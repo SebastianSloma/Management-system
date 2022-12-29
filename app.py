@@ -150,13 +150,32 @@ class Managment:
 
         # label no14
         label_14 = Label(upper_frame, font=(
-            "modern", 12, 'bold'), text="label 12:", bg='white')
+            "modern", 12, 'bold'), text="label 14:", bg='white')
         label_14.grid(row=3, column=4, sticky=W, padx=2, pady=7)
 
-
         # radio button
-        radio_button1=Frame(upper_frame,bd=2,relief=RIDGE, bg='white')
-        radio_button1.place(x=730,y=90,width=190,height=30)
+        radio_button1 = Frame(upper_frame, bd=2, relief=RIDGE, bg='white')
+        radio_button1.place(x=520, y=90, width=190, height=30)
+
+        first_choice = Radiobutton(radio_button1, text='xxx', value='xxx', font=(
+            'modern', 9, 'bold'), bg='white')
+        first_choice.grid(row=0, column=0, pady=2, padx=5, sticky=W)
+
+        second_choice = Radiobutton(radio_button1, text='yyy', value='yyy', font=(
+            'modern', 9, 'bold'), bg='white')
+        second_choice.grid(row=0, column=1, pady=2, padx=5, sticky=W)
+
+        # radio button2
+        radio_button2 = Frame(upper_frame, bd=2, relief=RIDGE, bg='white')
+        radio_button2.place(x=520, y=130, width=190, height=30)
+
+        third_choice = Radiobutton(radio_button2, text='qqq', value='qqq', font=(
+            'modern', 9, 'bold'), bg='white')
+        third_choice.grid(row=0, column=0, pady=2, padx=5, sticky=W)
+
+        forth_choice = Radiobutton(radio_button2, text='sss', value='sss', font=(
+            'modern', 9, 'bold'), bg='white')
+        forth_choice.grid(row=0, column=1, pady=2, padx=5, sticky=W)
 
 
 if __name__ == '__main__':
