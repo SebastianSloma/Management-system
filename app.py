@@ -186,17 +186,17 @@ class Managment:
             'modern', 13, 'bold'), width=14, bg='blue', fg='white')
         btn_add.grid(row=0, column=0, padx=3, pady=5)
 
-         # update btn
+        # update btn
         btn_update = Button(radio_button3, text='Update', font=(
             'modern', 13, 'bold'), width=14, bg='blue', fg='white')
         btn_update.grid(row=0, column=1, padx=3, pady=5)
 
-         # delete btn
+        # delete btn
         btn_delete = Button(radio_button3, text='Delete', font=(
             'modern', 13, 'bold'), width=14, bg='blue', fg='white')
         btn_delete.grid(row=0, column=2, padx=3, pady=5)
 
-         # clear btn
+        # clear btn
         btn_clear = Button(radio_button3, text='Clear', font=(
             'modern', 13, 'bold'), width=14, bg='blue', fg='white')
         btn_clear.grid(row=0, column=3, padx=3, pady=5)
