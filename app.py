@@ -24,7 +24,7 @@ class Managment:
         # Upper frame
         upper_frame = LabelFrame(
             Main_frame, bd=2, relief=RIDGE, text="bla bla bla")
-        upper_frame.place(x=10, y=10, width=1220, height=260)
+        upper_frame.place(x=10, y=10, width=1220, height=280)
         # Down frame
         down_frame = LabelFrame(
             Main_frame, bd=2, relief=RIDGE, text="bla bla bla")
@@ -176,6 +176,15 @@ class Managment:
         forth_choice = Radiobutton(radio_button2, text='sss', value='sss', font=(
             'modern', 9, 'bold'), bg='white')
         forth_choice.grid(row=0, column=1, pady=2, padx=5, sticky=W)
+
+        # Button
+        radio_button3 = Frame(upper_frame, bd=2, relief=RIDGE, bg='white')
+        radio_button3.place(x=5, y=200, width=620, height=45)
+
+        # add btn
+        btn_add = Button(radio_button3, text='Save record', font=(
+            'modern', 13, 'bold'), width=14, bg='blue', fg='white')
+        btn_add.grid(row=0, column=0, padx=3, pady=5)
 
 
 if __name__ == '__main__':
