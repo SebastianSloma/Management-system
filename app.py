@@ -225,8 +225,6 @@ class Managment:
         self.img_background = Label(upper_frame, image=self.photo_background)
         self.img_background.place(x=730, y=0, width=470, height=245)
 
-
-
         # search button
         btn_delete = Button(search_frame, text='Search', font=(
             'modern', 13, 'bold'), width=14, bg='blue', fg='white')
@@ -236,6 +234,23 @@ class Managment:
         btn_clear = Button(search_frame, text='Show all', font=(
             'modern', 13, 'bold'), width=14, bg='blue', fg='white')
         btn_clear.grid(row=0, column=4, padx=3, pady=5)
+
+        # Table
+        table_frame = Frame(down_frame, bd=2, relief=RIDGE)
+        table_frame.place(x=0, y=60, width=1200, height=100)
+
+        # Scroll bar
+        scroll_x = ttk.Scrollbar(table_frame, orient=HORIZONTAL)
+        scroll_y = ttk.Scrollbar(table_frame, orient=VERTICAL)
+
+        self.expense_table = ttk.Treeview(
+            table_frame, columns=('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14'), xscrollcommand=scroll_x.set, yscrollcommand=scroll_y.set)
+        
+        scroll_x.pack(side=BOTTOM, fill=X)
+        scroll_y.pack(side=RIGHT, fill=Y)
+
+        scroll_x.config(command=self.expense_table.xview)
+        scroll_y.config(command=self.expense_table.yview)
 
 
 if __name__ == '__main__':
