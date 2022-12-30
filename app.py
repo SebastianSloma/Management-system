@@ -243,7 +243,7 @@ class Managment:
 
         # background image right side
         img_background = Image.open('images/IMG.jpg')
-        img_background = img_background.resize((470, 245), Image.ANTIALIAS)
+        img_background = img_background.resize((470, 245), Image.LANCZOS)
         self.photo_background = ImageTk.PhotoImage(img_background)
 
         self.img_background = Label(upper_frame, image=self.photo_background)
@@ -310,6 +310,8 @@ class Managment:
 
         self.expense_table.pack(fill=BOTH, expand=1)
 
+        self.expense_table.bind('<ButtonRelease>', self.get_cursor)
+
         self.fetch_data()
 
     # Add data function
@@ -367,6 +369,59 @@ class Managment:
         data = content['values']
 
         self.var_label_1.set(data[0])
+        self.var_label_2.set(data[1])
+        self.var_label_3.set(data[2])
+        self.var_label_4.set(data[3])
+        self.var_label_5.set(data[4])
+        self.var_label_6.set(data[5])
+        self.var_label_7.set(data[6])
+        self.var_label_8.set(data[7])
+        self.var_label_9.set(data[8])
+        self.var_label_10.set(data[9])
+        self.var_label_11.set(data[10])
+        self.var_label_12.set(data[11])
+        self.var_label_13.set(data[12])
+        self.var_label_14.set(data[13])
+
+    #  update function
+    def update_data(self):
+        if self.var_label_1.get() == '':
+            messagebox.showerror('Error', 'All Fields are required')
+        else:
+            try:
+                update = messagebox.askyesno(
+                    'Update', 'Are you sure update this expense record?')
+                if update > 0:
+                    conn = mysql.connector.connect(
+                        host='localhost', username='root', password='root', database='expense_management')
+                    my_cursor = conn.cursor()
+                    my_cursor.execute('update expense1 set expense1col1=%s, expense1col2=%s, expense1col3=%s, expense1col4=%s, expense1col5=%s, expense1col6=%s, expense1col7=%s, expense1col8=%s, expense1col9=%s, expense1col10=%s, expense1col11=%s, expense1col12=%s, expense1col13=%s, expense1col14=%s'(
+                        self.var_label_1.get(),
+                        self.var_label_2.get(),
+                        self.var_label_3.get(),
+                        self.var_label_4.get(),
+                        self.var_label_5.get(),
+                        self.var_label_6.get(),
+                        self.var_label_7.get(),
+                        self.var_label_8.get(),
+                        self.var_label_9.get(),
+                        self.var_label_10.get(),
+                        self.var_label_11.get(),
+                        self.var_label_12.get(),
+                        self.var_label_13.get(),
+                        self.var_label_14.get()
+
+                    ))
+                else:
+                    if not update:
+                        return
+                conn.commit()
+                self.fetch_data()
+                conn.close()
+                messagebox.showinfo(
+                    'Success', 'Expense record successfully updeted')
+            except Exception as es:
+                messagebox.showerror('Error', f'Due To{str(es)}')
 
 
 if __name__ == '__main__':
