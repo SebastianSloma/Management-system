@@ -33,17 +33,23 @@ class Managment:
         # Search frame
         search_frame = LabelFrame(
             down_frame, bd=2, relief=RIDGE, text='Search', bg='white')
-        search_frame.place(x=10, y=0, width=1200, height=50)
+        search_frame.place(x=10, y=0, width=1200, height=60)
 
         # search label
         search_label = Label(search_frame, font=(
             'modern', 11, 'bold'), text='Search', bg='red', fg='white')
         search_label.grid(row=0, column=0, sticky=W, padx=5)
 
-        search_box = ttk.Combobox(search_frame, font=('modern',11,'bold'),width=18, state='readonly')
+        # combo box
+        search_box = ttk.Combobox(search_frame, font=(
+            'modern', 11, 'bold'), width=18, state='readonly')
         search_box['value'] = ('Select option', 'bla', 'bla', 'bla')
         search_box.current(0)
         search_box.grid(row=0, column=1, sticky=W, padx=5)
+
+        search_text = ttk.Entry(search_frame, width=22, font=(
+            "modern", 11, 'bold'))
+        search_text.grid(row=0, column=2, padx=2, pady=7)
 
         # 1 label
         label_1 = Label(upper_frame, text="label1", font=(
@@ -188,26 +194,26 @@ class Managment:
         forth_choice.grid(row=0, column=1, pady=2, padx=5, sticky=W)
 
         # Button
-        radio_button3 = Frame(upper_frame, bd=2, relief=RIDGE, bg='white')
-        radio_button3.place(x=5, y=200, width=620, height=45)
+        button_frame = Frame(upper_frame, bd=2, relief=RIDGE, bg='white')
+        button_frame.place(x=5, y=200, width=620, height=45)
 
         # add btn
-        btn_add = Button(radio_button3, text='Save Record', font=(
+        btn_add = Button(button_frame, text='Save Record', font=(
             'modern', 13, 'bold'), width=14, bg='blue', fg='white')
         btn_add.grid(row=0, column=0, padx=3, pady=5)
 
         # update btn
-        btn_update = Button(radio_button3, text='Update', font=(
+        btn_update = Button(button_frame, text='Update', font=(
             'modern', 13, 'bold'), width=14, bg='blue', fg='white')
         btn_update.grid(row=0, column=1, padx=3, pady=5)
 
         # delete btn
-        btn_delete = Button(radio_button3, text='Delete', font=(
+        btn_delete = Button(button_frame, text='Delete', font=(
             'modern', 13, 'bold'), width=14, bg='blue', fg='white')
         btn_delete.grid(row=0, column=2, padx=3, pady=5)
 
         # clear btn
-        btn_clear = Button(radio_button3, text='Clear', font=(
+        btn_clear = Button(button_frame, text='Clear', font=(
             'modern', 13, 'bold'), width=14, bg='blue', fg='white')
         btn_clear.grid(row=0, column=3, padx=3, pady=5)
 
@@ -218,6 +224,18 @@ class Managment:
 
         self.img_background = Label(upper_frame, image=self.photo_background)
         self.img_background.place(x=730, y=0, width=470, height=245)
+
+
+
+        # search button
+        btn_delete = Button(search_frame, text='Search', font=(
+            'modern', 13, 'bold'), width=14, bg='blue', fg='white')
+        btn_delete.grid(row=0, column=3, padx=3, pady=5)
+
+        # all button
+        btn_clear = Button(search_frame, text='Show all', font=(
+            'modern', 13, 'bold'), width=14, bg='blue', fg='white')
+        btn_clear.grid(row=0, column=4, padx=3, pady=5)
 
 
 if __name__ == '__main__':
