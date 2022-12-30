@@ -227,12 +227,12 @@ class Managment:
         btn_add.grid(row=0, column=0, padx=3, pady=5)
 
         # update btn
-        btn_update = Button(button_frame, text='Update', font=(
+        btn_update = Button(button_frame, command=self.update_data, text='Update', font=(
             'modern', 13, 'bold'), width=14, bg='blue', fg='white')
         btn_update.grid(row=0, column=1, padx=3, pady=5)
 
         # delete btn
-        btn_delete = Button(button_frame, text='Delete', font=(
+        btn_delete = Button(button_frame, command=self.delete_data, text='Delete', font=(
             'modern', 13, 'bold'), width=14, bg='blue', fg='white')
         btn_delete.grid(row=0, column=2, padx=3, pady=5)
 
@@ -420,6 +420,34 @@ class Managment:
                 conn.close()
                 messagebox.showinfo(
                     'Success', 'Expense record successfully updeted')
+            except Exception as es:
+                messagebox.showerror('Error', f'Due To{str(es)}')
+
+
+# delete function
+
+    def delete_data(self):
+        if self.var_label_1.get() == '':
+            messagebox.showerror('Error', 'All Fielsds are required')
+        else:
+            try:
+                Delete = messagebox.askyesno(
+                    'Delete', 'Are you sure delete this expense?')
+                if Delete > 0:
+                    conn = mysql.connector.connect(
+                        host='localhost', username='root', password='root', database='expense_management')
+                    my_cursor = conn.cursor()
+                    sql = 'delete from expense1 where var_label_1=%s'
+                    value = (self.var_label_1.get(),)
+                    my_cursor.execute(sql, value)
+                else:
+                    if not Delete:
+                        return
+                conn.commit()
+                self.fetch_data()
+                conn.close
+                messagebox.showinfo(
+                    'Success', 'Expense record successfully deleted')
             except Exception as es:
                 messagebox.showerror('Error', f'Due To{str(es)}')
 
