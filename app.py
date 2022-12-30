@@ -310,6 +310,8 @@ class Managment:
 
         self.expense_table.pack(fill=BOTH, expand=1)
 
+        self.fetch_data()
+
     # Add data function
     def add_data(self):
         if self.var_label_1.get() == '':
@@ -337,10 +339,34 @@ class Managment:
                     self.var_label_14.get()
                 ))
                 conn.commit()
+                self.fetch_data()
                 conn.close()
                 messagebox.showinfo('Success', 'Expense record has been added')
             except Exception as es:
                 messagebox.showerror('Error', f'Due To{str(es)}')
+
+    # Fetch data
+    def fetch_data(self):
+        conn = mysql.connector.connect(
+            host='localhost', username='root', password='root', database='expense_management')
+        my_cursor = conn.cursor()
+        my_cursor.execute('select * from expense1')
+        data = my_cursor.fetchall()
+        if len(data) != 0:
+            self.expense_table.delete(*self.expense_table.get_children())
+            for i in data:
+                self.expense_table.insert('', END, values=i)
+            conn.commit()
+        conn.close()
+
+    # get cursor
+
+    def get_cursor(self, event=''):
+        cursor_row = self.expense_table.focus()
+        content = self.expense_table.item(cursor_row)
+        data = content['values']
+
+        self.var_label_1.set(data[0])
 
 
 if __name__ == '__main__':
