@@ -35,6 +35,16 @@ class Managment:
             down_frame, bd=2, relief=RIDGE, text='Search', bg='white')
         search_frame.place(x=10, y=0, width=1200, height=50)
 
+        # search label
+        search_label = Label(search_frame, font=(
+            'modern', 11, 'bold'), text='Search', bg='red', fg='white')
+        search_label.grid(row=0, column=0, sticky=W, padx=5)
+
+        search_box = ttk.Combobox(search_frame, font=('modern',11,'bold'),width=18, state='readonly')
+        search_box['value'] = ('Select option', 'bla', 'bla', 'bla')
+        search_box.current(0)
+        search_box.grid(row=0, column=1, sticky=W, padx=5)
+
         # 1 label
         label_1 = Label(upper_frame, text="label1", font=(
             'modern', 11, 'bold'), bg='white')
