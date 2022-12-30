@@ -245,12 +245,29 @@ class Managment:
 
         self.expense_table = ttk.Treeview(
             table_frame, columns=('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14'), xscrollcommand=scroll_x.set, yscrollcommand=scroll_y.set)
-        
+
         scroll_x.pack(side=BOTTOM, fill=X)
         scroll_y.pack(side=RIGHT, fill=Y)
 
         scroll_x.config(command=self.expense_table.xview)
         scroll_y.config(command=self.expense_table.yview)
+
+        self.expense_table.heading('1', text='bla')
+        self.expense_table.heading('2', text='bla')
+        self.expense_table.heading('3', text='bla')
+        self.expense_table.heading('4', text='bla')
+        self.expense_table.heading('5', text='bla')
+        self.expense_table.heading('6', text='bla')
+        self.expense_table.heading('7', text='bla')
+        self.expense_table.heading('8', text='bla')
+        self.expense_table.heading('9', text='bla')
+        self.expense_table.heading('10', text='bla')
+        self.expense_table.heading('11', text='bla')
+        self.expense_table.heading('12', text='bla')
+        self.expense_table.heading('13', text='bla')
+        self.expense_table.heading('14', text='bla')
+
+        self.expense_table.pack(fill=BOTH,expand=1)
 
 
 if __name__ == '__main__':
