@@ -2,6 +2,8 @@
 from tkinter import *
 from tkinter import ttk
 from PIL import Image, ImageTk
+import mysql.connector
+
 
 # create class Managment
 
@@ -9,8 +11,24 @@ from PIL import Image, ImageTk
 class Managment:
     def __init__(self, root):
         self.root = root
-        self.root.geometry('1300x750+0+0')
+        self.root.geometry('1300x750')
         self.root.title('EXPENSE SYSTEM MANAGMENT')
+
+        # variables
+        self.var_label_1 = StringVar()
+        self.var_label_2 = StringVar()
+        self.var_label_3 = StringVar()
+        self.var_label_4 = StringVar()
+        self.var_label_5 = StringVar()
+        self.var_label_6 = StringVar()
+        self.var_label_7 = StringVar()
+        self.var_label_8 = StringVar()
+        self.var_label_9 = StringVar()
+        self.var_label_10 = StringVar()
+        self.var_label_11 = StringVar()
+        self.var_label_12 = StringVar()
+        self.var_label_13 = StringVar()
+        self.var_label_14 = StringVar()
 
         # create window
         label_title = Label(self.root, text='EXPENSE SYSTEM MANAGMENT', font=(
@@ -56,7 +74,7 @@ class Managment:
             'modern', 11, 'bold'), bg='white')
         label_1.grid(row=0, column=0, padx=2, sticky=W)
 
-        label_1_entry = ttk.Entry(upper_frame, width=22, font=(
+        label_1_entry = ttk.Entry(upper_frame, textvariable=self.var_label_1, width=22, font=(
             'modern', 11, 'bold'))
         label_1_entry.grid(row=0, column=1, padx=2, sticky=W)
 
@@ -65,7 +83,7 @@ class Managment:
             "modern", 12, 'bold'), text="label 2:", bg='white')
         label_2.grid(row=0, column=2, sticky=W, padx=2, pady=7)
 
-        label_2_entry = ttk.Entry(upper_frame, width=22, font=(
+        label_2_entry = ttk.Entry(upper_frame, textvariable=self.var_label_2, width=22, font=(
             "modern", 11, 'bold'))
         label_2_entry.grid(row=0, column=3, padx=2, pady=7)
 
@@ -74,7 +92,7 @@ class Managment:
             "modern", 12, 'bold'), text="label 3:", bg='white')
         label_3.grid(row=1, column=0, sticky=W, padx=2, pady=7)
 
-        label_3_entry = ttk.Entry(upper_frame, width=22, font=(
+        label_3_entry = ttk.Entry(upper_frame, textvariable=self.var_label_3, width=22, font=(
             "modern", 11, 'bold'))
         label_3_entry.grid(row=1, column=1, padx=2, pady=7)
 
@@ -83,7 +101,7 @@ class Managment:
             "modern", 12, 'bold'), text="label 4:", bg='white')
         label_4.grid(row=1, column=2, sticky=W, padx=2, pady=7)
 
-        label_4_entry = ttk.Entry(upper_frame, width=22, font=(
+        label_4_entry = ttk.Entry(upper_frame, textvariable=self.var_label_4, width=22, font=(
             "modern", 11, 'bold'))
         label_4_entry.grid(row=1, column=3, padx=2, pady=7)
 
@@ -92,7 +110,7 @@ class Managment:
             "modern", 12, 'bold'), text="label 5:", bg='white')
         label_5.grid(row=2, column=0, sticky=W, padx=2, pady=7)
 
-        label_5_entry = ttk.Entry(upper_frame, width=22, font=(
+        label_5_entry = ttk.Entry(upper_frame, textvariable=self.var_label_5, width=22, font=(
             "modern", 11, 'bold'))
         label_5_entry.grid(row=2, column=1, padx=2, pady=7)
 
@@ -101,7 +119,7 @@ class Managment:
             "modern", 12, 'bold'), text="label 6:", bg='white')
         label_6.grid(row=2, column=2, sticky=W, padx=2, pady=7)
 
-        label_6_entry = ttk.Entry(upper_frame, width=22, font=(
+        label_6_entry = ttk.Entry(upper_frame, textvariable=self.var_label_6, width=22, font=(
             "modern", 11, 'bold'))
         label_6_entry.grid(row=2, column=3, padx=2, pady=7)
 
@@ -110,7 +128,7 @@ class Managment:
             "modern", 12, 'bold'), text="label 7:", bg='white')
         label_7.grid(row=3, column=0, sticky=W, padx=2, pady=7)
 
-        label_7_entry = ttk.Entry(upper_frame, width=22, font=(
+        label_7_entry = ttk.Entry(upper_frame, textvariable=self.var_label_7, width=22, font=(
             "modern", 11, 'bold'))
         label_7_entry.grid(row=3, column=1, padx=2, pady=7)
 
@@ -119,7 +137,7 @@ class Managment:
             "modern", 12, 'bold'), text="label 8:", bg='white')
         label_8.grid(row=3, column=2, sticky=W, padx=2, pady=7)
 
-        label_8_entry = ttk.Entry(upper_frame, width=22, font=(
+        label_8_entry = ttk.Entry(upper_frame, textvariable=self.var_label_8, width=22, font=(
             "modern", 11, 'bold'))
         label_8_entry.grid(row=3, column=3, padx=2, pady=7)
 
@@ -128,7 +146,7 @@ class Managment:
             "modern", 12, 'bold'), text="label 9:", bg='white')
         label_9.grid(row=4, column=0, sticky=W, padx=2, pady=7)
 
-        label_9_entry = ttk.Entry(upper_frame, width=22, font=(
+        label_9_entry = ttk.Entry(upper_frame, textvariable=self.var_label_9, width=22, font=(
             "modern", 11, 'bold'))
         label_9_entry.grid(row=4, column=1, padx=2, pady=7)
 
@@ -137,7 +155,7 @@ class Managment:
             "modern", 12, 'bold'), text="label 10:", bg='white')
         label_10.grid(row=4, column=2, sticky=W, padx=2, pady=7)
 
-        label_10_entry = ttk.Entry(upper_frame, width=22, font=(
+        label_10_entry = ttk.Entry(upper_frame, textvariable=self.var_label_10, width=22, font=(
             "modern", 11, 'bold'))
         label_10_entry.grid(row=4, column=3, padx=2, pady=7)
 
@@ -146,7 +164,7 @@ class Managment:
             "modern", 12, 'bold'), text="label 11:", bg='white')
         label_11.grid(row=0, column=4, sticky=W, padx=2, pady=7)
 
-        label_11_entry = ttk.Entry(upper_frame, width=22, font=(
+        label_11_entry = ttk.Entry(upper_frame, textvariable=self.var_label_11, width=22, font=(
             "modern", 11, 'bold'))
         label_11_entry.grid(row=0, column=5, padx=2, pady=7)
 
@@ -155,7 +173,7 @@ class Managment:
             "modern", 12, 'bold'), text="label 12:", bg='white')
         label_12.grid(row=1, column=4, sticky=W, padx=2, pady=7)
 
-        label_12_entry = ttk.Entry(upper_frame, width=22, font=(
+        label_12_entry = ttk.Entry(upper_frame, textvariable=self.var_label_12, width=22, font=(
             "modern", 11, 'bold'))
         label_12_entry.grid(row=1, column=5, padx=2, pady=7)
 
@@ -173,11 +191,11 @@ class Managment:
         radio_button1 = Frame(upper_frame, bd=2, relief=RIDGE, bg='white')
         radio_button1.place(x=520, y=90, width=190, height=30)
 
-        first_choice = Radiobutton(radio_button1, text='xxx', value='xxx', font=(
+        first_choice = Radiobutton(radio_button1, textvariable=self.var_label_13, text='xxx', value='xxx', font=(
             'modern', 9, 'bold'), bg='white')
         first_choice.grid(row=0, column=0, pady=2, padx=5, sticky=W)
 
-        second_choice = Radiobutton(radio_button1, text='yyy', value='yyy', font=(
+        second_choice = Radiobutton(radio_button1, textvariable=self.var_label_13, text='yyy', value='yyy', font=(
             'modern', 9, 'bold'), bg='white')
         second_choice.grid(row=0, column=1, pady=2, padx=5, sticky=W)
 
@@ -185,11 +203,11 @@ class Managment:
         radio_button2 = Frame(upper_frame, bd=2, relief=RIDGE, bg='white')
         radio_button2.place(x=520, y=130, width=190, height=30)
 
-        third_choice = Radiobutton(radio_button2, text='qqq', value='qqq', font=(
+        third_choice = Radiobutton(radio_button2, textvariable=self.var_label_14, text='qqq', value='qqq', font=(
             'modern', 9, 'bold'), bg='white')
         third_choice.grid(row=0, column=0, pady=2, padx=5, sticky=W)
 
-        forth_choice = Radiobutton(radio_button2, text='sss', value='sss', font=(
+        forth_choice = Radiobutton(radio_button2, textvariable=self.var_label_14, text='sss', value='sss', font=(
             'modern', 9, 'bold'), bg='white')
         forth_choice.grid(row=0, column=1, pady=2, padx=5, sticky=W)
 
@@ -267,7 +285,24 @@ class Managment:
         self.expense_table.heading('13', text='bla')
         self.expense_table.heading('14', text='bla')
 
-        self.expense_table.pack(fill=BOTH,expand=1)
+        self.expense_table['show'] = 'headings'
+
+        self.expense_table.column('1', width=100)
+        self.expense_table.column('2', width=100)
+        self.expense_table.column('3', width=100)
+        self.expense_table.column('4', width=100)
+        self.expense_table.column('5', width=100)
+        self.expense_table.column('6', width=100)
+        self.expense_table.column('7', width=100)
+        self.expense_table.column('8', width=100)
+        self.expense_table.column('9', width=100)
+        self.expense_table.column('10', width=100)
+        self.expense_table.column('11', width=100)
+        self.expense_table.column('12', width=100)
+        self.expense_table.column('13', width=100)
+        self.expense_table.column('14', width=100)
+
+        self.expense_table.pack(fill=BOTH, expand=1)
 
 
 if __name__ == '__main__':
