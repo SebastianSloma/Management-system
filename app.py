@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter import ttk
 from PIL import Image, ImageTk
 import mysql.connector
+from tkinter import messagebox
 
 
 # create class Managment
@@ -177,37 +178,42 @@ class Managment:
             "modern", 11, 'bold'))
         label_12_entry.grid(row=1, column=5, padx=2, pady=7)
 
-        # label no13
-        label_13 = Label(upper_frame, font=(
-            "modern", 12, 'bold'), text="label 13:", bg='white')
-        label_13.grid(row=2, column=4, sticky=W, padx=2, pady=7)
-
-        # label no14
-        label_14 = Label(upper_frame, font=(
-            "modern", 12, 'bold'), text="label 14:", bg='white')
-        label_14.grid(row=3, column=4, sticky=W, padx=2, pady=7)
-
         # radio button
         radio_button1 = Frame(upper_frame, bd=2, relief=RIDGE, bg='white')
         radio_button1.place(x=520, y=90, width=190, height=30)
 
-        first_choice = Radiobutton(radio_button1, textvariable=self.var_label_13, text='xxx', value='xxx', font=(
+        # label no13 radio frame
+        label_13 = Label(upper_frame, font=(
+            "modern", 12, 'bold'), text="label 13:", bg='white')
+        label_13.grid(row=2, column=4, sticky=W, padx=2, pady=7)
+
+        first_choice = Radiobutton(radio_button1, variable=self.var_label_13, text='xxx', value='xxx', font=(
             'modern', 9, 'bold'), bg='white')
         first_choice.grid(row=0, column=0, pady=2, padx=5, sticky=W)
 
-        second_choice = Radiobutton(radio_button1, textvariable=self.var_label_13, text='yyy', value='yyy', font=(
+        second_choice = Radiobutton(radio_button1, variable=self.var_label_13, text='yyy', value='yyy', font=(
             'modern', 9, 'bold'), bg='white')
         second_choice.grid(row=0, column=1, pady=2, padx=5, sticky=W)
+
+        # label no14 radio frame
+        label_14 = Label(upper_frame, font=(
+            "modern", 12, 'bold'), text="label 14:", bg='white')
+        label_14.grid(row=3, column=4, sticky=W, padx=2, pady=7)
+
+        # label no14 radio frame
+        label_14 = Label(upper_frame, font=(
+            "modern", 12, 'bold'), text="label 14:", bg='white')
+        label_14.grid(row=3, column=4, sticky=W, padx=2, pady=7)
 
         # radio button2
         radio_button2 = Frame(upper_frame, bd=2, relief=RIDGE, bg='white')
         radio_button2.place(x=520, y=130, width=190, height=30)
 
-        third_choice = Radiobutton(radio_button2, textvariable=self.var_label_14, text='qqq', value='qqq', font=(
+        third_choice = Radiobutton(radio_button2, variable=self.var_label_14, text='qqq', value='qqq', font=(
             'modern', 9, 'bold'), bg='white')
         third_choice.grid(row=0, column=0, pady=2, padx=5, sticky=W)
 
-        forth_choice = Radiobutton(radio_button2, textvariable=self.var_label_14, text='sss', value='sss', font=(
+        forth_choice = Radiobutton(radio_button2, variable=self.var_label_14, text='sss', value='sss', font=(
             'modern', 9, 'bold'), bg='white')
         forth_choice.grid(row=0, column=1, pady=2, padx=5, sticky=W)
 
@@ -216,7 +222,7 @@ class Managment:
         button_frame.place(x=5, y=200, width=620, height=45)
 
         # add btn
-        btn_add = Button(button_frame, text='Save Record', font=(
+        btn_add = Button(button_frame, command=self.add_data, text='Save Record', font=(
             'modern', 13, 'bold'), width=14, bg='blue', fg='white')
         btn_add.grid(row=0, column=0, padx=3, pady=5)
 
@@ -303,6 +309,38 @@ class Managment:
         self.expense_table.column('14', width=100)
 
         self.expense_table.pack(fill=BOTH, expand=1)
+
+    # Add data function
+    def add_data(self):
+        if self.var_label_1.get() == '':
+            messagebox.showerror('Error', 'All Fields ae required')
+        else:
+            try:
+                conn = mysql.connector.connect(
+                    host='localhost', username='root', password='root', database='expense_management')
+                my_cursor = conn.cursor()
+                my_cursor.execute('insert into expense1 values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)', (
+
+                    self.var_label_1.get(),
+                    self.var_label_2.get(),
+                    self.var_label_3.get(),
+                    self.var_label_4.get(),
+                    self.var_label_5.get(),
+                    self.var_label_6.get(),
+                    self.var_label_7.get(),
+                    self.var_label_8.get(),
+                    self.var_label_9.get(),
+                    self.var_label_10.get(),
+                    self.var_label_11.get(),
+                    self.var_label_12.get(),
+                    self.var_label_13.get(),
+                    self.var_label_14.get()
+                ))
+                conn.commit()
+                conn.close()
+                messagebox.showinfo('Success', 'Expense record has been added')
+            except Exception as es:
+                messagebox.showerror('Error', f'Due To{str(es)}')
 
 
 if __name__ == '__main__':
