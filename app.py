@@ -237,7 +237,7 @@ class Managment:
         btn_delete.grid(row=0, column=2, padx=3, pady=5)
 
         # clear btn
-        btn_clear = Button(button_frame, text='Clear', font=(
+        btn_clear = Button(button_frame, command=self.clear_data, text='Clear', font=(
             'modern', 13, 'bold'), width=14, bg='blue', fg='white')
         btn_clear.grid(row=0, column=3, padx=3, pady=5)
 
@@ -342,6 +342,7 @@ class Managment:
                 ))
                 conn.commit()
                 self.fetch_data()
+                self.clear_data()
                 conn.close()
                 messagebox.showinfo('Success', 'Expense record has been added')
             except Exception as es:
@@ -417,14 +418,14 @@ class Managment:
                         return
                 conn.commit()
                 self.fetch_data()
+                self.clear_data()
                 conn.close()
                 messagebox.showinfo(
                     'Success', 'Expense record successfully updeted')
             except Exception as es:
                 messagebox.showerror('Error', f'Due To{str(es)}')
 
-
-# delete function
+    # delete function
 
     def delete_data(self):
         if self.var_label_1.get() == '':
@@ -437,7 +438,7 @@ class Managment:
                     conn = mysql.connector.connect(
                         host='localhost', username='root', password='root', database='expense_management')
                     my_cursor = conn.cursor()
-                    sql = 'delete from expense1 where var_label_1=%s'
+                    sql = 'delete from expense1 where expense1col1=%s'
                     value = (self.var_label_1.get(),)
                     my_cursor.execute(sql, value)
                 else:
@@ -445,11 +446,29 @@ class Managment:
                         return
                 conn.commit()
                 self.fetch_data()
+                self.clear_data()
                 conn.close
                 messagebox.showinfo(
                     'Success', 'Expense record successfully deleted')
             except Exception as es:
                 messagebox.showerror('Error', f'Due To{str(es)}')
+
+    # clear function
+    def clear_data(self):
+        self.var_label_1.set('')
+        self.var_label_2.set('')
+        self.var_label_3.set('')
+        self.var_label_4.set('')
+        self.var_label_5.set('')
+        self.var_label_6.set('')
+        self.var_label_7.set('')
+        self.var_label_8.set('')
+        self.var_label_9.set('')
+        self.var_label_10.set('')
+        self.var_label_11.set('')
+        self.var_label_12.set('')
+        self.var_label_13.set('')
+        self.var_label_14.set('')
 
 
 if __name__ == '__main__':
