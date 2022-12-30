@@ -201,6 +201,14 @@ class Managment:
             'modern', 13, 'bold'), width=14, bg='blue', fg='white')
         btn_clear.grid(row=0, column=3, padx=3, pady=5)
 
+        # background image right side
+        img_background = Image.open('images/IMG.jpg')
+        img_background = img_background.resize((470, 245), Image.ANTIALIAS)
+        self.photo_background = ImageTk.PhotoImage(img_background)
+
+        self.img_background = Label(upper_frame, image=self.photo_background)
+        self.img_background.place(x=730, y=0, width=470, height=245)
+
 
 if __name__ == '__main__':
     root = Tk()
