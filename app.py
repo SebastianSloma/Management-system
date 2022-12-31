@@ -60,13 +60,15 @@ class Managment:
         search_label.grid(row=0, column=0, sticky=W, padx=5)
 
         # combo box
-        search_box = ttk.Combobox(search_frame, font=(
+        self.va_com_search=StringVar()
+        search_box = ttk.Combobox(search_frame, textvariable=self.va_com_search, font=(
             'modern', 11, 'bold'), width=18, state='readonly')
         search_box['value'] = ('Select option', 'bla', 'bla', 'bla')
         search_box.current(0)
         search_box.grid(row=0, column=1, sticky=W, padx=5)
 
-        search_text = ttk.Entry(search_frame, width=22, font=(
+        self.var_search=StringVar()
+        search_text = ttk.Entry(search_frame, textvariable=self.var_search, width=22, font=(
             "modern", 11, 'bold'))
         search_text.grid(row=0, column=2, padx=2, pady=7)
 
@@ -250,14 +252,14 @@ class Managment:
         self.img_background.place(x=730, y=0, width=470, height=245)
 
         # search button
-        btn_delete = Button(search_frame, text='Search', font=(
+        btn_search = Button(search_frame, text='Search', font=(
             'modern', 13, 'bold'), width=14, bg='blue', fg='white')
-        btn_delete.grid(row=0, column=3, padx=3, pady=5)
+        btn_search.grid(row=0, column=3, padx=3, pady=5)
 
         # all button
-        btn_clear = Button(search_frame, text='Show all', font=(
+        btn_all = Button(search_frame, text='Show all', font=(
             'modern', 13, 'bold'), width=14, bg='blue', fg='white')
-        btn_clear.grid(row=0, column=4, padx=3, pady=5)
+        btn_all.grid(row=0, column=4, padx=3, pady=5)
 
         # Table
         table_frame = Frame(down_frame, bd=2, relief=RIDGE)
@@ -469,6 +471,10 @@ class Managment:
         self.var_label_12.set('')
         self.var_label_13.set('')
         self.var_label_14.set('')
+
+    # search
+    def search_data(self):
+
 
 
 if __name__ == '__main__':
