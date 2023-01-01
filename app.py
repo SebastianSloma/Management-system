@@ -60,14 +60,14 @@ class Managment:
         search_label.grid(row=0, column=0, sticky=W, padx=5)
 
         # combo box
-        self.va_com_search=StringVar()
-        search_box = ttk.Combobox(search_frame, textvariable=self.va_com_search, font=(
+        self.var_com_search = StringVar()
+        search_box = ttk.Combobox(search_frame, textvariable=self.var_com_search, font=(
             'modern', 11, 'bold'), width=18, state='readonly')
         search_box['value'] = ('Select option', 'bla', 'bla', 'bla')
         search_box.current(0)
         search_box.grid(row=0, column=1, sticky=W, padx=5)
 
-        self.var_search=StringVar()
+        self.var_search = StringVar()
         search_text = ttk.Entry(search_frame, textvariable=self.var_search, width=22, font=(
             "modern", 11, 'bold'))
         search_text.grid(row=0, column=2, padx=2, pady=7)
@@ -252,12 +252,12 @@ class Managment:
         self.img_background.place(x=730, y=0, width=470, height=245)
 
         # search button
-        btn_search = Button(search_frame, text='Search', font=(
+        btn_search = Button(search_frame, command=self.search_data, text='Search', font=(
             'modern', 13, 'bold'), width=14, bg='blue', fg='white')
         btn_search.grid(row=0, column=3, padx=3, pady=5)
 
         # all button
-        btn_all = Button(search_frame, text='Show all', font=(
+        btn_all = Button(search_frame, command=self.fetch_data, text='Show all', font=(
             'modern', 13, 'bold'), width=14, bg='blue', fg='white')
         btn_all.grid(row=0, column=4, padx=3, pady=5)
 
@@ -474,7 +474,25 @@ class Managment:
 
     # search
     def search_data(self):
-
+        if self.var_com_search.get() == '':
+            messagebox.showerror('Error', 'All Fields are required')
+        else:
+            try:
+                conn = mysql.connector.connect(
+                    host='localhost', username='root', password='root', database='expense_management')
+                my_cursor = conn.cursor()
+                my_cursor.execute('select * from expense1 where' + str(
+                    self.var_com_search.get()) + " LIKE'%" + str(self.var_search() + "%'"))
+                rows = my_cursor.fetchall()
+                if len(rows) != 0:
+                    self.expense_table.delete(
+                        *self.expense_table.get_children())
+                    for i in rows:
+                        self.expense_table.insert('', END, values=i)
+                conn.commit()
+                conn.close()
+            except Exception as es:
+                messagebox.showerror('Error', f'Due To{str(es)}')
 
 
 if __name__ == '__main__':
