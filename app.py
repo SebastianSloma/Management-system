@@ -398,8 +398,7 @@ class Managment:
                     conn = mysql.connector.connect(
                         host='localhost', username='root', password='root', database='expense_management')
                     my_cursor = conn.cursor()
-                    my_cursor.execute('update expense1 set expense1col1=%s, expense1col2=%s, expense1col3=%s, expense1col4=%s, expense1col5=%s, expense1col6=%s, expense1col7=%s, expense1col8=%s, expense1col9=%s, expense1col10=%s, expense1col11=%s, expense1col12=%s, expense1col13=%s, expense1col14=%s'(
-                        self.var_label_1.get(),
+                    my_cursor.execute('update expense1 set expense1col2=%s, expense1col3=%s, expense1col4=%s, expense1col5=%s, expense1col6=%s, expense1col7=%s, expense1col8=%s, expense1col9=%s, expense1col10=%s, expense1col11=%s, expense1col12=%s, expense1col13=%s, expense1col14=%s where expense1col1=%s', (
                         self.var_label_2.get(),
                         self.var_label_3.get(),
                         self.var_label_4.get(),
@@ -412,8 +411,8 @@ class Managment:
                         self.var_label_11.get(),
                         self.var_label_12.get(),
                         self.var_label_13.get(),
-                        self.var_label_14.get()
-
+                        self.var_label_14.get(),
+                        self.var_label_1.get()
                     ))
                 else:
                     if not update:
@@ -423,7 +422,7 @@ class Managment:
                 self.clear_data()
                 conn.close()
                 messagebox.showinfo(
-                    'Success', 'Expense record successfully updeted')
+                    'Success', 'Expense record successfully updated')
             except Exception as es:
                 messagebox.showerror('Error', f'Due To{str(es)}')
 
