@@ -481,11 +481,10 @@ class Managment:
                     host='localhost', username='root', password='root', database='expense_management')
                 my_cursor = conn.cursor()
                 my_cursor.execute('select * from expense1 where' + str(
-                    self.var_com_search.get()) + " LIKE'%" + str(self.var_search() + "%'"))
+                    self.var_com_search.get()) + "LIKE'%" + str(self.var_search() + "%'"))
                 rows = my_cursor.fetchall()
                 if len(rows) != 0:
-                    self.expense_table.delete(
-                        *self.expense_table.get_children())
+                    self.expense_table.delete(*self.expense_table.get_children())
                     for i in rows:
                         self.expense_table.insert('', END, values=i)
                 conn.commit()
