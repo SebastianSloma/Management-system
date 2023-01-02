@@ -63,17 +63,31 @@ class Managment:
         self.var_com_search = StringVar()
         search_box = ttk.Combobox(search_frame, textvariable=self.var_com_search, font=(
             'modern', 11, 'bold'), width=18, state='readonly')
-        search_box['value'] = ('Select option', 'bla', 'bla', 'bla')
+        search_box['value'] = ('Select option', 'expense1col1', 'expense1col2')
         search_box.current(0)
         search_box.grid(row=0, column=1, sticky=W, padx=5)
 
         self.var_search = StringVar()
         search_text = ttk.Entry(search_frame, textvariable=self.var_search, width=22, font=(
             "modern", 11, 'bold'))
-        search_text.grid(row=0, column=2, padx=2, pady=7)
+        search_text.grid(row=0, column=2, sticky=W, padx=5)
+
+        # search button
+        btn_search = Button(search_frame, command=self.search_data, text='Search', font=(
+            'modern', 13, 'bold'), width=14, bg='blue', fg='white')
+        btn_search.grid(row=0, column=3, padx=3, pady=5)
+
+        # all button
+        btn_all = Button(search_frame, command=self.fetch_data, text='Show all', font=(
+            'modern', 13, 'bold'), width=14, bg='blue', fg='white')
+        btn_all.grid(row=0, column=4, padx=3, pady=5)
+
+        # Table
+        table_frame = Frame(down_frame, bd=2, relief=RIDGE)
+        table_frame.place(x=0, y=60, width=1200, height=100)
 
         # 1 label
-        label_1 = Label(upper_frame, text="label1", font=(
+        label_1 = Label(upper_frame, text="label 1", font=(
             'modern', 11, 'bold'), bg='white')
         label_1.grid(row=0, column=0, padx=2, sticky=W)
 
@@ -251,20 +265,6 @@ class Managment:
         self.img_background = Label(upper_frame, image=self.photo_background)
         self.img_background.place(x=730, y=0, width=470, height=245)
 
-        # search button
-        btn_search = Button(search_frame, command=self.search_data, text='Search', font=(
-            'modern', 13, 'bold'), width=14, bg='blue', fg='white')
-        btn_search.grid(row=0, column=3, padx=3, pady=5)
-
-        # all button
-        btn_all = Button(search_frame, command=self.fetch_data, text='Show all', font=(
-            'modern', 13, 'bold'), width=14, bg='blue', fg='white')
-        btn_all.grid(row=0, column=4, padx=3, pady=5)
-
-        # Table
-        table_frame = Frame(down_frame, bd=2, relief=RIDGE)
-        table_frame.place(x=0, y=60, width=1200, height=100)
-
         # Scroll bar
         scroll_x = ttk.Scrollbar(table_frame, orient=HORIZONTAL)
         scroll_y = ttk.Scrollbar(table_frame, orient=VERTICAL)
@@ -278,20 +278,20 @@ class Managment:
         scroll_x.config(command=self.expense_table.xview)
         scroll_y.config(command=self.expense_table.yview)
 
-        self.expense_table.heading('1', text='bla')
-        self.expense_table.heading('2', text='bla')
-        self.expense_table.heading('3', text='bla')
-        self.expense_table.heading('4', text='bla')
-        self.expense_table.heading('5', text='bla')
-        self.expense_table.heading('6', text='bla')
-        self.expense_table.heading('7', text='bla')
-        self.expense_table.heading('8', text='bla')
-        self.expense_table.heading('9', text='bla')
-        self.expense_table.heading('10', text='bla')
-        self.expense_table.heading('11', text='bla')
-        self.expense_table.heading('12', text='bla')
-        self.expense_table.heading('13', text='bla')
-        self.expense_table.heading('14', text='bla')
+        self.expense_table.heading('1', text='expense1col1')
+        self.expense_table.heading('2', text='expense1col2')
+        self.expense_table.heading('3', text='expense1col3')
+        self.expense_table.heading('4', text='expense1col4')
+        self.expense_table.heading('5', text='expense1col5')
+        self.expense_table.heading('6', text='expense1col6')
+        self.expense_table.heading('7', text='expense1col7')
+        self.expense_table.heading('8', text='expense1col8')
+        self.expense_table.heading('9', text='expense1col9')
+        self.expense_table.heading('10', text='expense1col10')
+        self.expense_table.heading('11', text='expense1col11')
+        self.expense_table.heading('12', text='expense1col12')
+        self.expense_table.heading('13', text='expense1col13')
+        self.expense_table.heading('14', text='expense1col14')
 
         self.expense_table['show'] = 'headings'
 
@@ -473,20 +473,21 @@ class Managment:
 
     # search
     def search_data(self):
-        if self.var_com_search.get() == '':
+        if self.var_com_search.get() == "":
             messagebox.showerror('Error', 'All Fields are required')
         else:
             try:
                 conn = mysql.connector.connect(
                     host='localhost', username='root', password='root', database='expense_management')
                 my_cursor = conn.cursor()
-                my_cursor.execute('select * from expense1 where' + str(
-                    self.var_com_search.get()) + "LIKE'%" + str(self.var_search() + "%'"))
+                my_cursor.execute('select * from expense1 where ' + str(
+                    self.var_com_search.get()) + "LIKE'%" + str(self.var_search.get() + "%'"))
                 rows = my_cursor.fetchall()
                 if len(rows) != 0:
-                    self.expense_table.delete(*self.expense_table.get_children())
+                    self.expense_table.delete(
+                        *self.expense_table.get_children())
                     for i in rows:
-                        self.expense_table.insert('', END, values=i)
+                        self.expense_table.insert("", END, values=i)
                 conn.commit()
                 conn.close()
             except Exception as es:
